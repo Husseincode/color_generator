@@ -6,6 +6,7 @@ import Option from './options';
 import { colorTypes } from '../data/data';
 import { usePageContext } from '../context/context';
 import { Container } from '../logic';
+import Sidebar from './sidebar';
 
 const Generator = () => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
@@ -29,27 +30,31 @@ const Generator = () => {
       </p>
     );
   return (
-    <section className='flex flex-col gap-[30px] items-center justify-center w-full'>
-      {/**Heading */}
-      <h2 className='text-3xl slide-from-top'>
-        <span>{heading}</span> color
-      </h2>
+    <section className='w-full flex justify-between'>
+      <Sidebar />
+      <div className='flex flex-col gap-[30px] items-center justify-center w-full py-[50px]'>
+        {/**Heading */}
+        <h2 className='text-3xl slide-from-top'>
+          <span>{heading}</span> color
+        </h2>
 
-      {/**Container color type */}
-      <Container />
+        {/**Container color type */}
+        <Container />
 
-      {/**Other optionss */}
-      <div className='w-[800px] min-h-[100px] shadow-sm rounded-[10px] p-2 grid grid-cols-3 gap-[10px]'>
-        {colorTypes.map((item, idx: number) => (
-          <Option
-            value={item.name}
-            onClick={() => {
-              setHeading(item.name.toUpperCase());
-            }}
-            key={idx}
-          />
-        ))}
+        {/**Other optionss */}
+        <div className='w-[800px] min-h-[100px] shadow-sm rounded-[10px] p-2 grid grid-cols-3 gap-[10px]'>
+          {colorTypes.map((item, idx: number) => (
+            <Option
+              value={item.name}
+              onClick={() => {
+                setHeading(item.name.toUpperCase());
+              }}
+              key={idx}
+            />
+          ))}
+        </div>
       </div>
+      {/* <aside className='w-[300px] border border-dashed h-[100vh] overflow-y-scroll'></aside> */}
     </section>
   );
 };

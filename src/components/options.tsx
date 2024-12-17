@@ -16,7 +16,7 @@ const Option: FC<OptionProps> = ({ value, onClick }) => {
       type='button'
       title={value}
       className={`h-[70px] flex justify-center transition-all duration-500 items-center cursor-pointer slide-from-bottom ${
-        value.toUpperCase() === heading ? 'bg-[#646cff]' : 'bg-[#1a1a1a]'
+        value.toUpperCase() === heading ? 'bg-[#646cff]' : 'bg-[#1a1a1a]  '
       }`}
       onClick={onClick}>
       {value.toUpperCase()}
