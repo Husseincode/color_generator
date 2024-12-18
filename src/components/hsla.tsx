@@ -2,30 +2,31 @@
 import { Fragment } from 'react/jsx-runtime';
 import { usePageContext } from '../context/context';
 
-const HSL = () => {
-  const { HSLColors, setHSLColors } = usePageContext();
-  const handleHSLColorChange = (e: {
+const HSLA = () => {
+  const { HSLAColors, setHSLAColors } = usePageContext();
+  const handleHSLAColorChange = (e: {
     target: { name: string; value: string };
   }) => {
     const { name, value } = e.target;
-    setHSLColors({ ...HSLColors, [name]: Number(value) });
+    setHSLAColors({ ...HSLAColors, [name]: Number(value) });
   };
   return (
     <Fragment>
       <div
         style={{
-          background: `hsl(${HSLColors.hue},${HSLColors.saturation}%, ${HSLColors.lightness}%)`,
+          background: `hsla(${HSLAColors.hue},${HSLAColors.saturation}%, ${HSLAColors.lightness}%, ${HSLAColors.alpha})`,
         }}
         className='w-full md:w-[400px] slide-from-left h-[70px] rounded-md transition-all duration-500 shadow-md border-white flex items-center justify-center text-white'>
         <span>
-          hsl({HSLColors.hue}, {HSLColors.saturation}, {HSLColors.lightness})
+          hsla({HSLAColors.hue}, {HSLAColors.saturation}, {HSLAColors.lightness}
+          , {HSLAColors.alpha})
         </span>
       </div>
       <form
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
         }}
-        className='w-full md:w-[400px] flex justify-between gap-[20px] md:flex-row flex-col'>
+        className='w-full md:w-[400px] flex justify-between gap-[20px] md:flex-row flex-col flex-wrap'>
         {/**Hue */}
         <label
           className='flex flex-col justify-center items-center gap-[5px]'
@@ -36,11 +37,11 @@ const HSL = () => {
             name='hue'
             max={360}
             min={0}
-            onChange={handleHSLColorChange}
-            value={HSLColors.hue}
+            onChange={handleHSLAColorChange}
+            value={HSLAColors.hue}
             id='hue'
           />
-          <span>{HSLColors.hue}</span>
+          <span>{HSLAColors.hue}</span>
         </label>
 
         {/**Saturation range */}
@@ -53,11 +54,11 @@ const HSL = () => {
             name='saturation'
             max={100}
             min={0}
-            onChange={handleHSLColorChange}
-            value={HSLColors.saturation}
+            onChange={handleHSLAColorChange}
+            value={HSLAColors.saturation}
             id='saturation'
           />
-          <span>{HSLColors.saturation}</span>
+          <span>{HSLAColors.saturation}</span>
         </label>
 
         {/**Lightness range */}
@@ -70,15 +71,33 @@ const HSL = () => {
             name='lightness'
             max={100}
             min={0}
-            onChange={handleHSLColorChange}
-            value={HSLColors.lightness}
+            onChange={handleHSLAColorChange}
+            value={HSLAColors.lightness}
             id='lightness'
           />
-          <span>{HSLColors.lightness}</span>
+          <span>{HSLAColors.lightness}</span>
+        </label>
+
+        {/**Alpha range */}
+        <label
+          className='flex flex-col justify-center items-center gap-[5px]'
+          htmlFor='alpha'>
+          <span>Alpha</span>
+          <input
+            type='range'
+            name='alpha'
+            max={1}
+            min={0}
+            step={0.01}
+            onChange={handleHSLAColorChange}
+            value={HSLAColors.alpha}
+            id='alpha'
+          />
+          <span>{HSLAColors.alpha}</span>
         </label>
       </form>
     </Fragment>
   );
 };
 
-export default HSL;
+export default HSLA;

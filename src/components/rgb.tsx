@@ -17,7 +17,7 @@ const RGB = () => {
         style={{
           background: `rgb(${RGBColors.red},${RGBColors.green}, ${RGBColors.blue})`,
         }}
-        className='w-[400px] slide-from-right h-[70px] rounded-md transition-all duration-500 shadow-md border-white flex items-center justify-center text-white'>
+        className='w-full md:w-[400px] slide-from-right h-[70px] rounded-md transition-all duration-500 shadow-md border-white flex items-center justify-center text-white'>
         <span>
           rgb({RGBColors.red}, {RGBColors.green}, {RGBColors.blue})
         </span>
@@ -26,7 +26,7 @@ const RGB = () => {
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
         }}
-        className='w-[400px] flex justify-between gap-[20px]'>
+        className='w-full md:w-[400px] flex md:flex-row flex-col justify-between gap-[20px]'>
         <Inputslide
           id='red'
           value={RGBColors.red}

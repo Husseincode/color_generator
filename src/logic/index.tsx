@@ -5,6 +5,7 @@ import { usePageContext } from '../context/context';
 import RGB from '../components/rgb';
 import RGBA from '../components/rgba';
 import HSL from '../components/hsl';
+import HSLA from '../components/hsla';
 
 export const Container = () => {
   const { heading } = usePageContext();
@@ -16,8 +17,9 @@ export const Container = () => {
       return <RGBA />;
     case 'HSL':
       return <HSL />;
+    case 'HSLA':
+      return <HSLA />;
     default:
-      break;
+      return <RGB />;
   }
-  return <></>;
 };

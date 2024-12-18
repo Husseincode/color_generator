@@ -2,9 +2,10 @@
 
 import toast from 'react-hot-toast';
 import { usePageContext } from '../context/context';
+//import { useState } from 'react';
 //import { colorTypes } from '../data/data';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpened }: { isOpened: boolean }) => {
   const { heading, RGBColors, RGBAColors } = usePageContext();
 
   const handleCopy = (value: string) => {
@@ -77,16 +78,16 @@ const Sidebar = () => {
         return [
           {
             format: 'RGB',
-            value: `rgb(${RGBColors.red}, ${RGBAColors.green}, ${RGBAColors.blue})`,
+            value: `rgb(${RGBColors.red}, ${RGBColors.green}, ${RGBColors.blue})`,
           },
           {
             format: 'HEX',
             value: rgbToHex(RGBColors.red, RGBColors.green, RGBColors.blue),
           },
-          // {
-          //   format: 'RGBA',
-          //   value: rgbToRgba(red, green, blue, alpha),
-          // },
+          {
+            format: 'RGBA',
+            value: rgbToRgba(RGBColors.red, RGBColors.green, RGBColors.blue),
+          },
           {
             format: 'HSL',
             value: rgbToHsl(RGBColors.red, RGBColors.green, RGBColors.blue),
@@ -118,8 +119,12 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`w-[400px] h-[100vh] overflow-y-scroll sticky top-0 bg-[#1a1a1a] flex flex-col gap-[20px] p-6`}>
-      <h2 className='text-2xl'>Other synonymous color type</h2>
+      className={`min-h-screen overflow-y-scroll fixed transition-all duration-500 top-0 z-10 bg-[#1a1a1a] flex-col flex gap-[20px] p-6  ${
+        isOpened
+          ? 'w-[280px] md:w-[350px] slide-from-left visible'
+          : 'w-0 invisible'
+      }`}>
+      <h2 className='text-2xl'>Color formats</h2>
       <ol className='flex flex-col gap-[20px] list-decimal'>
         {convertCurrentColorToDifferentForms()?.map((color, index) => (
           <li key={index} className='flex justify-between items-end'>

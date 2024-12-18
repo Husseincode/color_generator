@@ -17,7 +17,7 @@ const RGBA = () => {
         style={{
           background: `rgba(${RGBAColors.red},${RGBAColors.green}, ${RGBAColors.blue}, ${RGBAColors.alpha})`,
         }}
-        className='w-[400px] slide-from-left h-[70px] rounded-md transition-all duration-500 shadow-md border-white flex items-center justify-center text-white'>
+        className='w-full md:w-[400px] slide-from-left h-[70px] rounded-md transition-all duration-500 shadow-md border-white flex items-center justify-center text-white'>
         <span>
           rgba({RGBAColors.red}, {RGBAColors.green}, {RGBAColors.blue},{' '}
           {RGBAColors.alpha})
@@ -27,7 +27,7 @@ const RGBA = () => {
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
         }}
-        className='min-w-[400px] flex justify-between gap-[20px]'>
+        className='w-full md:w-[400px] flex justify-between gap-[20px] md:flex-row flex-col flex-wrap'>
         <Inputslide
           id='red'
           value={RGBAColors.red}
